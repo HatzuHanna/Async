@@ -7,16 +7,33 @@ const promise = new Promise(function (resolve, reject) {
     } else {
       reject(resultado);
     }
-  }, 0);
+  }, 1000);
 });
 
 // console.log(promise);
 
-promise.then(
-  // sucessHandler
-  (ingrediente) => console.log(`Cortar ${ingrediente}`),
-  // errorHandler
-  (motivo) => console.log(motivo)
-);
+promise
+  .then(
+    // sucessHandler
+    (ingrediente) => {
+      console.log(`Cortar ${ingrediente}`);
+      return "lechuga";
+    }
+  )
+  .then(
+    // sucessHandler
+    (ingrediente) => {
+      console.log(`Cortar ${ingrediente}`);
+      return "zanahoria";
+    }
+  )
+  .then(
+    // sucessHandler
+    (ingrediente) => console.log(`Cortar ${ingrediente}`)
+  )
+  .catch(
+    // errorHandler
+    (motivo) => console.log(motivo, "Cerrar restaurante")
+  )
 
-console.log("Servir...");
+  .finally(() => console.log("Servir..."));
